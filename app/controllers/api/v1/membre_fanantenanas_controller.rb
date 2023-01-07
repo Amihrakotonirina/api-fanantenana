@@ -17,15 +17,18 @@ before_action :set_membre_fanantenana, only: %i[ show update destroy ]
   # GET /membre_fanantenanas/1
   # GET /membre_fanantenanas/1.json
   def show
+  	@membre_fanantenana = MembreFanantenana.find(params[:id])
+  	render json: @membre_fanantenana
   end
 
   # POST /membre_fanantenanas
   # POST /membre_fanantenanas.json
   def create
-    @membre_fanantenana = MembreFanantenana.new(membre_fanantenana_params)
+    #@membre_fanantenana = MembreFanantenana.new(membre_fanantenana_params)
+    @membre_fanantenana = MembreFanantenana.new
 
     if @membre_fanantenana.save
-      render :show, status: :created, location: @membre_fanantenana
+      render :show, status: :created
     else
       render json: @membre_fanantenana.errors, status: :unprocessable_entity
     end
