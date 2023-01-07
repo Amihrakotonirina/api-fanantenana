@@ -1,0 +1,2 @@
+class CategorieReunion < ApplicationRecord
+end
