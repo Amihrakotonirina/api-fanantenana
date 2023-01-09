@@ -55,6 +55,6 @@ before_action :set_reunion, only: %i[ show update destroy ]
 
     # Only allow a list of trusted parameters through.
     def reunion_params
-      params.require(:reunion).permit(:title, :completed)
+      params.require(:reunion).permit(:date_reunion, :heure_debut, :heure_fin, :ouverte, :commentaire)
     end
 end
