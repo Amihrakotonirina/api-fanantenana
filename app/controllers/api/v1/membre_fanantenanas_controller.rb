@@ -24,8 +24,7 @@ before_action :set_membre_fanantenana, only: %i[ show update destroy ]
   # POST /membre_fanantenanas
   # POST /membre_fanantenanas.json
   def create
-    #@membre_fanantenana = MembreFanantenana.new(membre_fanantenana_params)
-    @membre_fanantenana = MembreFanantenana.new
+    @membre_fanantenana = MembreFanantenana.new(membre_fanantenana_params)
 
     if @membre_fanantenana.save
       render :show, status: :created
@@ -58,6 +57,8 @@ before_action :set_membre_fanantenana, only: %i[ show update destroy ]
 
     # Only allow a list of trusted parameters through.
     def membre_fanantenana_params
-      params.require(:membre_fanantenana).permit(:title, :completed)
+      params.require(:membre_fanantenana).permit(:id, :matricule, :nom, :prenom, :sexe, :date_naissance,
+        :adresse, :telephone, :photo_profile, :telephone_parent, :niveau_etude, :annee_etude, :profession, :date_adhesion,
+        :don, :etude, :annee_adhesion, :numero_fpvm, :status_fpvm, :membre_actif)
     end
 end

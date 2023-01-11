@@ -55,6 +55,6 @@ before_action :set_categorie_reunion, only: %i[ show update destroy ]
 
     # Only allow a list of trusted parameters through.
     def categorie_reunion_params
-      params.require(:categorie_reunion).permit(:title, :completed)
+      params.require(:categorie_reunion).permit(:id, :categorie, :description)
     end
 end

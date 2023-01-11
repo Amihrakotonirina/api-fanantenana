@@ -55,6 +55,6 @@ before_action :set_presence, only: %i[ show update destroy ]
 
     # Only allow a list of trusted parameters through.
     def presence_params
-      params.require(:presence).permit(:title, :completed)
+      params.require(:presence).permit(:id, :retard, :heureEntree, :heureSortie, :note)
     end
 end

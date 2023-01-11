@@ -23,6 +23,7 @@ before_action :set_reunion, only: %i[ show update destroy ]
   # POST /reunions.json
   def create
     @reunion = Reunion.new(reunion_params)
+    #@reunion.ouverte = true
 
     if @reunion.save
       render :show, status: :created, location: @reunion
@@ -55,6 +56,6 @@ before_action :set_reunion, only: %i[ show update destroy ]
 
     # Only allow a list of trusted parameters through.
     def reunion_params
-      params.require(:reunion).permit(:date_reunion, :heure_debut, :heure_fin, :ouverte, :commentaire)
+      params.require(:reunion).permit(:id, :dateReunion, :heureDebut, :heureFin, :ouverte, :commentaire)
     end
 end
