@@ -27,6 +27,6 @@
 /config/master.key
 
 #Mirana
-db/schema.rb
-/storage/
-/config/*
+#db/schema.rb
+#/storage/
+#/config/*
