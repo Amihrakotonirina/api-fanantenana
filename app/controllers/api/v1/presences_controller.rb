@@ -19,6 +19,28 @@ before_action :set_presence, only: %i[ show update destroy ]
   def show
   end
 
+  # POST /presences/new/:membre_fanantenana_id/:reunion_id
+  # POST /presences.json
+  def new_from_front
+
+    reunion_id = params[:reunion_id].to_i
+    membre_fanantenana_id = params[:membre_fanantenana_id].to_i
+    tempPresence = params[:presence]
+
+    reunion = Reunion.find reunion_id
+    membre_fanantenana = MembreFanantenana.find membre_fanantenana_id
+
+    @presence = Presence.new(presence_params)
+    @presence.reunion = reunion
+    @presence.membre_fanantenana = membre_fanantenana
+
+    if @presence.save
+      render :show, status: :created, location: @presence
+    else
+      render json: @presence.errors, status: :unprocessable_entity
+    end
+  end
+
   # POST /presences
   # POST /presences.json
   def create
@@ -55,6 +77,7 @@ before_action :set_presence, only: %i[ show update destroy ]
 
     # Only allow a list of trusted parameters through.
     def presence_params
+      #tokony averina jerena
       params.require(:presence).permit(:id, :retard, :heureEntree, :heureSortie, :note)
     end
 end

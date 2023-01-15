@@ -17,6 +17,22 @@ before_action :set_reunion, only: %i[ show update destroy ]
   # GET /reunions/1
   # GET /reunions/1.json
   def show
+    @reunion = Reunion.find(params[:id])
+    render json: @reunion
+  end
+
+  # POST /reunions/new
+  # POST /reunions/new.json
+  def new_from_front
+    categorie_reunion = CategorieReunion.find(params[:categorie_reunion_id])
+    @reunion = Reunion.new(reunion_params)
+    @reunion.categorie_reunion = categorie_reunion
+
+    if @reunion.save
+      render :show, status: :created, location: @reunion
+    else
+      render json: @reunion.errors, status: :unprocessable_entity
+    end
   end
 
   # POST /reunions
@@ -40,6 +56,11 @@ before_action :set_reunion, only: %i[ show update destroy ]
     else
       render json: @reunion.errors, status: :unprocessable_entity
     end
+  end
+
+  def today_reunions
+    @today_reunions = Reunion.today
+    render json: @today_reunions
   end
 
   # DELETE /reunions/1
